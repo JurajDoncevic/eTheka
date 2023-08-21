@@ -40,7 +40,7 @@ public partial class MarkdownEditorView : UserControl
         {
             _registryOptions = new RegistryOptions(ThemeName.DarkPlus);
         }
-        _registryOptions ??= new RegistryOptions(ThemeName.Light);
+        _registryOptions ??= new RegistryOptions(ThemeName.QuietLight);
 
         //Initial setup of TextMate.
         var _textMateInstallation = _textEditor.InstallTextMate(_registryOptions);
