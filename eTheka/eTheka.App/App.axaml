@@ -1,0 +1,18 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:themes="clr-namespace:Avalonia.Themes.Fluent;assembly=Avalonia.Themes.Fluent"
+			 xmlns:conv="using:eTheka.App.Converters"
+             x:Class="eTheka.App.App"
+             RequestedThemeVariant="Default">
+	<!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+	<Application.Styles>
+		<FluentTheme />
+		<StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
+		<StyleInclude Source="avares://AvaloniaEdit/Themes/Fluent/AvaloniaEdit.xaml" />
+	</Application.Styles>
+	<Application.Resources>
+		<conv:ByteBitmapTypeConverter x:Key="ByteBitmapTypeConverter"/>
+		<conv:ResultTypeColorConverter x:Key="ResultTypeColorConverter"/>
+	</Application.Resources>
+</Application>

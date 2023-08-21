@@ -1,0 +1,49 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:htmlRender="clr-namespace:TheArtOfDev.HtmlRenderer.Avalonia;assembly=Avalonia.HtmlRenderer"
+			 xmlns:vm="using:eTheka.App.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
+             x:Class="eTheka.App.Views.MarkdownPreviewView"
+			 x:DataType="vm:MarkdownPreviewViewModel">
+	<Design.DataContext>
+		<vm:MarkdownPreviewViewModel/>
+	</Design.DataContext>
+	<Grid ShowGridLines="False">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="35"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<!--Control buttons-->
+		<Grid Grid.Row="0"
+			  ColumnDefinitions="150,120,1*">
+			<Button Grid.Row="0" Grid.Column="0"
+					Command="{Binding GeneratePreviewCommand}"
+					Content="Generate preview"
+					VerticalAlignment="Center"
+					HorizontalAlignment="Left"
+					HotKey="F5"/>
+			<ComboBox Grid.Row="0" Grid.Column="1"
+					  Width="100"
+					  HorizontalAlignment="Left"
+					  VerticalAlignment="Center"
+					  ItemsSource="{Binding CssStyles}"
+					  DisplayMemberBinding="{Binding Name}"
+					  SelectedItem="{Binding SelectedStyle}"/>
+		</Grid>
+		
+		<!--HTML preview-->
+		<htmlRender:HtmlPanel Name="HtmlPanel"
+					  Grid.Row="1" Grid.Column="0"
+					  Text="{Binding GeneratedHtml}"
+					  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+					  Background="{Binding SelectedStyle.BackgroundBrush}"
+					  BaseStylesheet="{Binding SelectedStyle.CssStylesheet}"
+					  ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+	</Grid>
+</UserControl>

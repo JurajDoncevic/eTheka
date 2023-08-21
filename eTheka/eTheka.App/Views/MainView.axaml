@@ -1,0 +1,113 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:views="using:eTheka.App.Views"
+			 xmlns:vm="using:eTheka.App.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="eTheka.App.Views.MainView"
+			 x:DataType="vm:MainViewModel">
+	<Design.DataContext>
+		<vm:MainViewModel/>
+	</Design.DataContext>
+
+	<Grid ShowGridLines="False">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="28"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="28"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" MinWidth="280"/>
+			<ColumnDefinition Width="auto" MaxWidth="10"/>
+			<ColumnDefinition Width="*" MinWidth="280"/>
+			<ColumnDefinition Width="auto" MinWidth="10"/>
+		</Grid.ColumnDefinitions>
+
+		<!--Main menu-->
+		<Menu Grid.Row="0" Grid.ColumnSpan="4"
+			  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+			<MenuItem Header="File">
+				<MenuItem Header="Open file (Ctrl + O)"
+						  HotKey="Ctrl + O"
+						  Command="{Binding OpenMarkdownExtendedFileCommand}"/>
+				<MenuItem Header="Save file (Ctrl + S)"
+						  HotKey="Ctrl + S"
+						  Command="{Binding SaveMarkdownExtendedFileCommand}"/>
+				<MenuItem Header="Save file as... (Ctrl + Shift + S)"
+						  HotKey="Ctrl + Shift + S"
+						  Command="{Binding SaveAsMarkdownExtendedFileCommand}"/>
+				<Separator/>
+				<MenuItem Header="Exit (Alt + F4)"
+						  HotKey="Alt + F4"
+						  Command="{Binding HandleClose}"/>
+			</MenuItem>
+			<MenuItem Header="Markdown">
+				<MenuItem Header="Generate preview (F5)"
+						  HotKey="F5"
+						  Command="{Binding GenerateHtmlPreviewCommand}"/>
+				<MenuItem Header="Export preview HTML"
+						  Command="{Binding ExportAsHtmlCommand}"/>
+			</MenuItem>
+			<MenuItem Header="Help">
+				<MenuItem Header="About"
+						  Command="{Binding OpenAboutCommand}"/>
+			</MenuItem>
+		</Menu>
+
+		<!--Markdown editor-->
+		<Panel Grid.Row="1" Grid.Column="0">
+			<views:MarkdownEditorView HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+		</Panel>
+
+
+		<!--Splitter-->
+		<GridSplitter Grid.Row="1" Grid.Column="1"
+					  Background="Transparent"
+					  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+		<Separator Grid.Column="1" Grid.Row="1" 
+				   HorizontalAlignment="Stretch" Width="200"
+				   ZIndex="1">
+			<Separator.RenderTransform>
+				<RotateTransform CenterX="0" CenterY="0" Angle="90" />
+			</Separator.RenderTransform>
+		</Separator>
+
+
+		<!--Markdown preview-->
+		<Panel Grid.Row="1" Grid.Column="2">
+			<views:MarkdownPreviewView Padding="15,0,15,0"
+									   HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+		</Panel>
+
+		<!--Figure management-->
+		<SplitView IsPaneOpen="{Binding IsFiguresSidebarOpen}"
+				   Grid.Row="1" Grid.Column="3"
+				   DisplayMode="Inline"
+				   CompactPaneLength="10"
+				   OpenPaneLength="500"
+				   MinWidth="10"
+				   HorizontalAlignment="Stretch"
+				   VerticalAlignment="Stretch">
+			<SplitView.Pane>
+				<views:FiguresManagementView VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+			</SplitView.Pane>
+			<Panel Background="Transparent" MaxWidth="10">
+				<Button Width="10" Height="50" Padding="0"
+						VerticalAlignment="Center" HorizontalAlignment="Stretch"
+						Command="{Binding ToggleFiguresSidebarCommand}"
+						ToolTip.Tip="Figure management">
+					<TextBlock Margin="0" Padding="0" VerticalAlignment="Center">◀</TextBlock>
+				</Button>
+			</Panel>
+		</SplitView>
+
+
+
+
+		<!--Status bar-->
+		<Label Grid.Row="2" Grid.ColumnSpan="4"
+			   Foreground="{Binding OperationOutcomeType, Converter={StaticResource ResultTypeColorConverter}}"
+			   Content="{Binding OperationOutcomeMessage}"/>
+	</Grid>
+</UserControl>

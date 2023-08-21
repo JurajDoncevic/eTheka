@@ -1,0 +1,83 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:eTheka.App.ViewModels"
+			 xmlns:models="using:eTheka.Domain"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="eTheka.App.Views.FiguresManagementView"
+			 x:DataType="vm:FiguresManagementViewModel">
+	<Design.DataContext>
+		<vm:FiguresManagementViewModel/>
+	</Design.DataContext>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="4*"/>
+			<RowDefinition Height="1*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Panel Grid.Row="0" Grid.Column="0">
+			<DataGrid ItemsSource="{Binding Figures}"
+					  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+					  AutoGenerateColumns="False"
+					  GridLinesVisibility="All"
+					  CanUserReorderColumns="False"
+					  CanUserResizeColumns="True"
+					  CanUserSortColumns="True"
+					  SelectedItem="{Binding SelectedFigure}">
+				<DataGrid.Columns>
+					<DataGridTextColumn Header="Name"
+										Binding="{Binding FullName}"
+										Width="*"/>
+					<DataGridTextColumn Header="Extension"
+										Binding="{Binding Extension}"
+										Width="*"/>
+					<DataGridTemplateColumn Header="Preview" Width="100" MaxWidth="256">
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate DataType="models:Figure">
+								<Image Source="{Binding FileBytes, Converter={StaticResource ByteBitmapTypeConverter}}" MaxWidth="256" MaxHeight="256"/>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					</DataGridTemplateColumn>
+					<DataGridTemplateColumn Header="" MinWidth="80" MaxWidth="80">
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate DataType="models:Figure">
+								<Button x:CompileBindings="False" Content="Remove" Command="{Binding $parent[UserControl].DataContext.RemoveFigureCommand}" CommandParameter="{Binding .}"/>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					</DataGridTemplateColumn>
+
+				</DataGrid.Columns>
+			</DataGrid>
+		</Panel>
+		<Panel Grid.Row="1" Grid.Column="0">
+			<Border BorderBrush="LightSlateGray"
+					BorderThickness="1"
+					CornerRadius="5"
+					Margin="5"
+					DragDrop.AllowDrop="True">
+				<Grid ColumnDefinitions="1*,1*">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="1*"/>
+						<RowDefinition Height="1*" />
+					</Grid.RowDefinitions>
+					<TextBlock Text="Drag an drop image files (.png, .jpg, .jpeg, or .webp)"
+							   TextWrapping="Wrap"
+							   Grid.Row="0" Grid.ColumnSpan="2"
+							   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+					<TextBlock Text="...or"
+							   Grid.Row="1" Grid.Column="0"
+							   HorizontalAlignment="Right" VerticalAlignment="Center"
+							   Margin="0,0,5,0"/>
+					<Button Content="Open files"
+							Grid.Row="1" Grid.Column="1"
+							HorizontalAlignment="Left"
+							VerticalAlignment="Center"
+							Command="{Binding OpenImagesCommand}"/>
+				</Grid>
+			</Border>
+		</Panel>
+	</Grid>
+</UserControl>

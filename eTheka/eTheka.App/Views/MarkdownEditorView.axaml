@@ -1,0 +1,44 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:ae="clr-namespace:AvaloniaEdit;assembly=AvaloniaEdit"
+			 xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+			 xmlns:beh="using:eTheka.App.Behaviors"
+			 xmlns:vm="using:eTheka.App.ViewModels"
+			 xmlns:views="using:eTheka.Views"
+             mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
+             x:Class="eTheka.App.Views.MarkdownEditorView"
+			 x:DataType="vm:MarkdownEditorViewModel">
+
+	<Design.DataContext>
+		<vm:MarkdownEditorViewModel />
+	</Design.DataContext>
+
+	<Grid RowDefinitions="*"
+		  ColumnDefinitions="*"
+		  Margin="0"
+		  ShowGridLines="False">
+		<ae:TextEditor Name="Editor"
+					   ShowLineNumbers="True"
+					   WordWrap="True"
+					   FontFamily="Cascadia Code,Consolas,Menlo,Monospace"
+					   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+					   Grid.Row="0" Grid.Column="0"
+					   TextChanged="Editor_TextChanged">
+			<ae:TextEditor.ContextMenu>
+				<ContextMenu>
+					<MenuItem Header="Copy" InputGesture="Ctrl+C" Command="{Binding Source={x:Static ae:ApplicationCommands.Copy}}" />
+					<MenuItem Header="Cut" InputGesture="Ctrl+X" Command="{Binding Source={x:Static ae:ApplicationCommands.Cut}}" />
+					<MenuItem Header="Paste" InputGesture="Ctrl+V" Command="{Binding Source={x:Static ae:ApplicationCommands.Paste}}" />
+					<Separator/>
+					<MenuItem Header="Redo" InputGesture="Ctrl+Y" Command="{Binding Source={x:Static ae:ApplicationCommands.Redo}}" />
+					<MenuItem Header="Undo" InputGesture="Ctrl+Z" Command="{Binding Source={x:Static ae:ApplicationCommands.Undo}}" />
+				</ContextMenu>
+			</ae:TextEditor.ContextMenu>
+			<i:Interaction.Behaviors>
+				<beh:TextDocumentBindingBehavior Text="{Binding MarkdownText}"/>
+			</i:Interaction.Behaviors>
+		</ae:TextEditor>
+	</Grid>
+</UserControl>

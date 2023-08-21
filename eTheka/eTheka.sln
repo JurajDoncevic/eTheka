@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eTheka.App", "eTheka.App\eTheka.App.csproj", "{931ED5E0-6175-4860-B765-B16355CF68DF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eTheka.App.Desktop", "eTheka.App.Desktop\eTheka.App.Desktop.csproj", "{3235F58D-32C8-4492-BE3B-675A1950466A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eTheka.Services", "eTheka.Services\eTheka.Services.csproj", "{857C818B-0E23-4DB3-8ED5-97D2AC3CDFDF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eTheka.Base", "eTheka.Base\eTheka.Base.csproj", "{C2D1FD49-E236-4B85-B454-C233C99B32E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eTheka.Domain", "eTheka.Domain\eTheka.Domain.csproj", "{3E353D5A-3392-4455-94E9-D8FFF165FFF8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{931ED5E0-6175-4860-B765-B16355CF68DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{931ED5E0-6175-4860-B765-B16355CF68DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{931ED5E0-6175-4860-B765-B16355CF68DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{931ED5E0-6175-4860-B765-B16355CF68DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3235F58D-32C8-4492-BE3B-675A1950466A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3235F58D-32C8-4492-BE3B-675A1950466A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3235F58D-32C8-4492-BE3B-675A1950466A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3235F58D-32C8-4492-BE3B-675A1950466A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{857C818B-0E23-4DB3-8ED5-97D2AC3CDFDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{857C818B-0E23-4DB3-8ED5-97D2AC3CDFDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{857C818B-0E23-4DB3-8ED5-97D2AC3CDFDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{857C818B-0E23-4DB3-8ED5-97D2AC3CDFDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2D1FD49-E236-4B85-B454-C233C99B32E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2D1FD49-E236-4B85-B454-C233C99B32E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2D1FD49-E236-4B85-B454-C233C99B32E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2D1FD49-E236-4B85-B454-C233C99B32E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E353D5A-3392-4455-94E9-D8FFF165FFF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E353D5A-3392-4455-94E9-D8FFF165FFF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E353D5A-3392-4455-94E9-D8FFF165FFF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E353D5A-3392-4455-94E9-D8FFF165FFF8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0487DF7A-F637-4CD5-9D28-F247F7A29CBF}
+	EndGlobalSection
+EndGlobal
