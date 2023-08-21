@@ -13,8 +13,7 @@ public class MarkdownEditorViewModel
     IRequestHandler<GetCurrentMarkdownRequest, string>,
     INotificationHandler<MarkdownFileOpenedNotification>
 {
-    private string _markdownText =
-        "# heading 1\r\n## heading 2 \r\n### heading 3\r\n**bold text**\r\n\r\nsome ordinary text\r\n\r\nSome bullet points:\r\n* bullet 1\r\n* bullet 2\r\n* bullet 3";
+    private string _markdownText = string.Empty;
     public string MarkdownText
     {
         get => _markdownText;
