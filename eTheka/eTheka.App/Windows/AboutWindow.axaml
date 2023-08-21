@@ -2,33 +2,59 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300"
+        mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="400"
         x:Class="eTheka.App.Windows.AboutWindow"
-		Width="400"
-		Height="300"
+		Width="450"
+		Height="400"
 		WindowStartupLocation="CenterOwner"
 		CanResize="False"
 		Icon="/Assets/eTheka.ico"
-        Title="eTheka">
+        Title="eTheka"
+		DataContext="{Binding $self}">
+	<Window.Styles>
+		<Style Selector="Button.link">
+			<Setter Property="Foreground" Value="Blue" />
+			<Setter Property="Padding" Value="0" />
+			<Setter Property="Cursor" Value="Hand" />
+			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="Template">
+				<ControlTemplate>
+					<ContentPresenter Content="{TemplateBinding Content}">
+						<ContentPresenter.Styles>
+							<Style Selector="TextBlock">
+								<Setter Property="Foreground" Value="{TemplateBinding Foreground}"/>
+								<Setter Property="FontSize" Value="{TemplateBinding FontSize}"/>
+								<Setter Property="TextDecorations" Value="Underline"/>
+							</Style>
+						</ContentPresenter.Styles>
+					</ContentPresenter>
+				</ControlTemplate>
+			</Setter>
+		</Style>
+	</Window.Styles>
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*"/>
-			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="1*"/>
+			<ColumnDefinition Width="1*"/>
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
+			<RowDefinition Height="1*"/>
+			<RowDefinition Height="200"/>
+			<RowDefinition Height="1*"/>
 		</Grid.RowDefinitions>
-		<Label Content="eTheka"
-			   Grid.Row="0" Grid.ColumnSpan="2"
-			   HorizontalAlignment="Center" VerticalAlignment="Center"
-			   FontSize="30" FontWeight="DemiBold"/>
-		<Image Source="/Assets/eTheka.png"
-			   Grid.Row="1" Grid.ColumnSpan="2"/>
-		<TextBlock Grid.ColumnSpan="2" Grid.Row="2"
-				   HorizontalAlignment="Center" VerticalAlignment="Center">
-			Created by Juraj Dončević
+		<Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" Grid.ColumnSpan="2" FontSize="24">eTheka</Label>
+		<Border CornerRadius="30,30,30,30" Margin="0,0,0,5" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="180" Width="180">
+			<Border.Background>
+				<ImageBrush Stretch="Uniform" Source="/Assets/eTheka.png"/>
+			</Border.Background>
+		</Border>
+
+		<TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="2" TextAlignment="Center">
+			As presented at the <Button Command="{Binding ClickedLink}" CommandParameter="https://cuc.carnet.hr/2024/" Classes="link">Carnet Users Conference 2024</Button>
+			<LineBreak></LineBreak>
+			<LineBreak></LineBreak>
+			For more information contact the authors via <Button Classes="link" Command="{Binding ClickedLink}" CommandParameter="mailto:vesna.pavkovic-doncevic@skole.hr?cc=juraj.doncevic@fer.hr">email</Button>.
 		</TextBlock>
 	</Grid>
 </Window>
