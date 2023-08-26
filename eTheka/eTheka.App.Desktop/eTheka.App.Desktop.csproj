@@ -13,6 +13,7 @@
 		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
 		<Authors>Juraj Doncevic</Authors>
 		<RepositoryUrl>https://github.com/JurajDoncevic/eTheka</RepositoryUrl>
+		<Version>1.0.0</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
